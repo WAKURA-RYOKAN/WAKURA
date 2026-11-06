@@ -1,1 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKURA | A Quiet Stay in Ryogoku, Tokyo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Boku&family=Poppins:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1f2d3d;
+    --indigo:#22405a;
+    --indigo-deep:#16283a;
+    --washi:#f7f3ea;
+    --washi-soft:#efe9db;
+    --accent:#b5482a;
+    --accent-soft:#c96b4a;
+    --line:#dcd3bd;
+    --card-bg:#ffffff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:Georgia,"Times New Roman",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--washi);
+    color:var(--ink);
+    line-height:1.8;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
 
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,243,234,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{
+    font-size:1.15rem; letter-spacing:0.08em; font-weight:700; color:var(--indigo-deep);
+  }
+  .brand small{display:block; font-size:0.62rem; letter-spacing:0.25em; color:var(--accent); font-weight:400; margin-top:2px;}
+  nav ul{list-style:none; display:flex; gap:28px;}
+  nav a{font-size:0.85rem; letter-spacing:0.05em; color:var(--indigo); position:relative; padding-bottom:2px;}
+  nav a:hover{color:var(--accent);}
+  .nav-toggle{display:none;}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    min-height:78vh;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    background:
+      linear-gradient(rgba(22,40,58,0.72), rgba(22,40,58,0.55)),
+      repeating-linear-gradient(135deg, #24425e 0px, #24425e 2px, #1c3550 2px, #1c3550 40px);
+    color:#f7f3ea;
+    padding:100px 24px 80px;
+  }
+  .hero-kanji{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-family:'Yuji Boku', serif;
+    font-size:clamp(9rem, 34vw, 24rem);
+    line-height:1;
+    color:rgba(0,0,0,0.22);
+    white-space:nowrap;
+    pointer-events:none;
+    user-select:none;
+    z-index:1;
+  }
+  .hero-inner{max-width:720px; position:relative; z-index:2;}
+  .hero-eyebrow{
+    letter-spacing:0.4em; font-size:0.75rem; color:#e3cbae; margin-bottom:18px; text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    letter-spacing:0.12em;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .hero h1 span{display:block; font-size:0.4em; letter-spacing:0.5em; color:#e3cbae; margin-top:14px; font-weight:400;}
+  .hero h1 .airbnb-tag{
+    display:inline-block; font-size:1em; letter-spacing:0;
+    font-family:'Poppins', sans-serif; font-weight:700;
+    color:#FF385C; margin-left:0.3em;
+  }
+  .hero p{
+    margin-top:26px; font-size:1.02rem; color:#eae3d2; max-width:560px; margin-left:auto; margin-right:auto;
+  }
+  .hero-cta{
+    display:inline-block; margin-top:36px;
+    padding:14px 40px;
+    border:1px solid #e3cbae;
+    border-radius:2px;
+    letter-spacing:0.15em; font-size:0.85rem;
+    transition:background 0.25s, color 0.25s;
+  }
+  .hero-cta:hover{background:#e3cbae; color:var(--indigo-deep);}
+
+  /* Section shells */
+  section{padding:88px 24px;}
+  .section-inner{max-width:1080px; margin:0 auto;}
+  .section-head{text-align:center; margin-bottom:52px;}
+  .section-eyebrow{letter-spacing:0.35em; font-size:0.7rem; color:var(--accent); margin-bottom:12px;}
+  .section-head h2{font-size:1.9rem; letter-spacing:0.1em; color:var(--indigo-deep);}
+  .section-head .en{display:block; font-size:0.6rem; letter-spacing:0.3em; color:#a89b7d; margin-top:10px;}
+
+  /* About */
+  .about{background:var(--card-bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .about-visual{
+    aspect-ratio:4/5; border-radius:4px;
+    background:linear-gradient(160deg, #2b4a68, #16283a);
+    display:flex; align-items:center; justify-content:center;
+    color:#e3cbae; font-size:0.85rem; letter-spacing:0.2em; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .about-visual::after{
+    content:"W"; position:absolute; font-size:14rem; color:rgba(227,203,174,0.08); font-weight:700;
+  }
+  .about-text p{margin-bottom:20px; color:#374556;}
+  .about-text p:last-child{margin-bottom:0;}
+
+  /* Access highlights */
+  .access{background:var(--washi-soft);}
+  .access-grid{
+    margin-top:56px;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:24px;
+  }
+  .access-card{
+    background:var(--card-bg); border:1px solid var(--line); border-radius:4px;
+    padding:30px 24px; text-align:center;
+  }
+  .access-card .icon{
+    width:44px; height:44px; margin:0 auto 16px; border-radius:50%;
+    background:var(--indigo); color:#f7f3ea; display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+  }
+  .access-card h3{font-size:0.95rem; letter-spacing:0.05em; color:var(--indigo-deep); margin-bottom:8px;}
+  .access-card p{font-size:0.85rem; color:#5a6675;}
+
+  .spot-list{margin-top:40px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;}
+  .spot-tag{
+    border:1px solid var(--line); background:var(--card-bg);
+    padding:8px 18px; border-radius:20px; font-size:0.8rem; color:var(--indigo);
+  }
+
+  .area-intro{
+    max-width:760px; margin:0 auto 56px;
+  }
+  .area-intro h3{
+    font-size:1.15rem; letter-spacing:0.06em; color:var(--indigo-deep); margin-bottom:16px;
+  }
+  .area-intro h4{
+    font-size:0.85rem; letter-spacing:0.1em; color:var(--indigo); margin:28px 0 14px;
+    text-transform:uppercase;
+  }
+  .area-intro p{margin-bottom:16px; color:#374556; font-size:0.9rem;}
+  .area-intro p:last-child{margin-bottom:0;}
+
+  .love-grid{
+    max-width:760px; margin:32px auto 0;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;
+  }
+  .love-item{
+    background:var(--card-bg); border:1px solid var(--line); border-radius:4px;
+    padding:14px 16px; font-size:0.82rem; color:#374556;
+    display:flex; align-items:center; gap:10px;
+  }
+  .love-item .emoji{font-size:1.1rem;}
+
+  .routes{
+    margin-top:48px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;
+  }
+  .route-card{
+    background:var(--card-bg); border:1px solid var(--line); border-radius:4px; padding:28px 26px;
+  }
+  .route-card h3{
+    font-size:0.95rem; letter-spacing:0.06em; color:var(--indigo-deep); margin-bottom:18px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .route-card ol{list-style:none; counter-reset:step;}
+  .route-card li{
+    counter-increment:step; position:relative; padding-left:34px; margin-bottom:14px;
+    font-size:0.82rem; color:#5a6675; line-height:1.7;
+  }
+  .route-card li:last-child{margin-bottom:0;}
+  .route-card li::before{
+    content:counter(step); position:absolute; left:0; top:0;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--indigo); color:#f7f3ea;
+    font-size:0.7rem; font-weight:700; display:flex; align-items:center; justify-content:center;
+  }
+
+  .map-embed{
+    margin-top:48px; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+    background:var(--card-bg);
+  }
+  .map-embed iframe{
+    width:100%; height:360px; border:0; display:block;
+  }
+
+  /* Rooms */
+  .rooms{background:var(--card-bg);}
+  .room-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:28px;
+  }
+  .room-card{
+    border:1px solid var(--line); border-radius:4px; overflow:hidden;
+    display:flex; flex-direction:column; background:var(--washi);
+    transition:transform 0.25s, box-shadow 0.25s;
+  }
+  .room-card.available:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(22,40,58,0.12);}
+  .room-thumb{
+    aspect-ratio:4/3; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#f7f3ea; font-size:1.4rem; letter-spacing:0.15em; font-weight:700;
+    background:linear-gradient(150deg,#2b4a68,#16283a);
+  }
+  a.room-thumb{transition:opacity 0.2s;}
+  a.room-thumb:hover{opacity:0.85;}
+  .room-thumb .photo-cta{
+    margin-top:10px; font-size:0.68rem; letter-spacing:0.15em; font-weight:400;
+    color:#e3cbae; border:1px solid #e3cbae; border-radius:20px; padding:5px 16px;
+  }
+  .room-card.pending .room-thumb{
+    background:repeating-linear-gradient(45deg, #e5ddc9, #e5ddc9 10px, #efe9db 10px, #efe9db 20px);
+    color:#a89b7d;
+  }
+  .room-body{padding:22px 22px 26px; flex:1; display:flex; flex-direction:column;}
+  .room-body h3{font-size:1.05rem; color:var(--indigo-deep); letter-spacing:0.05em; margin-bottom:6px;}
+  .room-body .room-no{font-size:0.72rem; letter-spacing:0.2em; color:var(--accent); margin-bottom:14px;}
+  .room-body p{font-size:0.82rem; color:#5a6675; flex:1; margin-bottom:16px;}
+  .room-link{
+    align-self:flex-start; font-size:0.78rem; letter-spacing:0.08em; color:var(--indigo);
+    border-bottom:1px solid var(--indigo); padding-bottom:2px;
+  }
+  .room-link:hover{color:var(--accent); border-color:var(--accent);}
+  .pending-label{
+    align-self:flex-start; font-size:0.75rem; letter-spacing:0.1em; color:#a89b7d;
+  }
+
+  /* Featured room (with full amenity detail) */
+  .room-card.featured{
+    grid-column:1 / -1;
+    flex-direction:row;
+    background:var(--card-bg);
+    border-color:var(--indigo);
+  }
+  .room-card.featured .room-thumb{
+    aspect-ratio:auto; width:280px; flex-shrink:0;
+  }
+  .room-card.featured .room-body{padding:30px 34px;}
+  .room-badge{
+    display:inline-block; font-size:0.68rem; letter-spacing:0.15em; color:var(--accent);
+    border:1px solid var(--accent); border-radius:20px; padding:3px 14px; margin-bottom:12px;
+    width:fit-content;
+  }
+  .amenity-groups{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:22px 28px;
+    margin:22px 0 24px; padding-top:20px; border-top:1px solid var(--line);
+  }
+  .amenity-group h4{
+    font-size:0.75rem; letter-spacing:0.12em; color:var(--indigo); margin-bottom:10px;
+  }
+  .amenity-group ul{list-style:none;}
+  .amenity-group li{
+    font-size:0.78rem; color:#5a6675; margin-bottom:6px; padding-left:14px; position:relative;
+  }
+  .amenity-group li::before{
+    content:"·"; position:absolute; left:0; color:var(--accent); font-weight:700;
+  }
+  .stay-facts{
+    display:flex; flex-wrap:wrap; gap:0; margin:18px 0 22px;
+    border:1px solid var(--line); border-radius:4px; overflow:hidden;
+  }
+  .stay-fact{
+    flex:1; min-width:120px; text-align:center; padding:14px 12px;
+    border-right:1px solid var(--line); background:var(--washi-soft);
+  }
+  .stay-fact:last-child{border-right:none;}
+  .stay-fact .label{font-size:0.65rem; letter-spacing:0.12em; color:#a89b7d; margin-bottom:4px;}
+  .stay-fact .value{font-size:0.95rem; color:var(--indigo-deep); font-weight:700; letter-spacing:0.03em;}
+
+  .feature-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
+  .feature-tag{
+    font-size:0.72rem; letter-spacing:0.03em; color:var(--indigo);
+    background:var(--washi-soft); border:1px solid var(--line);
+    padding:5px 12px; border-radius:14px;
+  }
+  @media (max-width:760px){
+    .room-card.featured{flex-direction:column;}
+    .room-card.featured .room-thumb{width:100%; aspect-ratio:4/3;}
+  }
+
+  /* Footer */
+  footer{
+    background:var(--indigo-deep); color:#e3cbae; text-align:center; padding:56px 24px 40px;
+  }
+  footer .brand{color:#f7f3ea; font-size:1rem; letter-spacing:0.15em; margin-bottom:10px;}
+  footer p{font-size:0.78rem; color:#b7c3cf; margin-bottom:4px;}
+  footer .note{margin-top:24px; font-size:0.7rem; color:#7f93a3;}
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    nav ul{gap:16px;}
+    nav a{font-size:0.78rem;}
+    section{padding:64px 20px;}
+    .map-embed iframe{height:280px;}
+    .stay-fact{min-width:45%; border-bottom:1px solid var(--line);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">WAKURA<small>RYOGOKU, TOKYO</small></div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#access">Access &amp; Area</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-kanji" aria-hidden="true">和蔵</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">RYOGOKU · TOKYO</div>
+    <h1>WAKURA <span class="airbnb-tag">Airbnb</span></h1>
+    <p>Just 3 minutes on foot from Ryogoku Station (Oedo Line) and 8 minutes from JR Ryogoku Station. Tucked away in a quiet residential street off the main commercial road, WAKURA is the perfect base for exploring Tokyo.</p>
+    <a href="#rooms" class="hero-cta">View Rooms</a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-inner about-grid">
+    <div class="about-visual">WAKURA</div>
+    <div class="about-text">
+      <div class="section-eyebrow">ABOUT</div>
+      <h2 style="font-size:1.6rem; color:var(--indigo-deep); letter-spacing:0.08em; margin-bottom:24px;">A quiet, convenient stay in Ryogoku</h2>
+      <p>Steps away from the Ryogoku Kokugikan sumo arena, and within walking distance of the Edo-Tokyo Museum, the Sumida Hokusai Museum, and the Token Museum. Asakusa and the Tokyo Skytree are also about a 30-minute walk away.</p>
+      <p>Nearly every major Tokyo destination — Ginza, Roppongi, Shinjuku, Tsukiji, Toyosu, Akihabara, Asakusa, and more — is within a 30-minute train ride, making WAKURA an ideal home base for sightseeing.</p>
+      <p>The area around the station is full of izakayas and local diners, giving you a real taste of neighborhood life, and convenience stores, a supermarket, and a liquor shop are all nearby.</p>
+      <p style="color:var(--indigo); font-size:0.85rem; letter-spacing:0.03em; margin-top:24px;">📍 1-17-2 Kamezawa, Sumida-ku, Tokyo, Japan</p>
+      <p style="color:#5a6675; font-size:0.75rem; letter-spacing:0.02em; margin-top:10px;">Operated by Wakura LLC<br>Lodging Business License (Sumida City Health Center): 31墨副衛生環第6号 / 2墨福衛生環第145号</p>
+    </div>
+  </div>
+</section>
+
+<section class="access" id="access">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">ACCESS</div>
+      <h2>Access</h2>
+      <span class="en">Location &amp; Transport</span>
+    </div>
+
+    <div class="area-intro">
+      <h3>About the Neighborhood — Ryogoku, Tokyo</h3>
+      <p>Welcome to Ryogoku, one of Tokyo's most fascinating neighborhoods, where traditional Japanese culture and modern Tokyo come together.</p>
+      <p>Known as the heart of sumo culture, Ryogoku is home to the famous Ryogoku Kokugikan, where major sumo tournaments are held. The neighborhood is also rich in history, with attractions such as the Edo-Tokyo Museum and Kyu-Yasuda Garden nearby.</p>
+      <p>Take a stroll through the streets and you'll discover traditional restaurants, local shops, and the relaxed atmosphere of an authentic Tokyo neighborhood. Ryogoku is a wonderful place to experience a side of Tokyo that feels different from the busy tourist districts.</p>
+
+      <h4>Getting Around</h4>
+      <p>Ryogoku is conveniently served by both the JR Sobu Line and the Toei Oedo Line, making it an excellent base for exploring Tokyo.</p>
+      <p>From Ryogoku, you can easily access popular destinations such as Asakusa, Tokyo Skytree, Akihabara, Ueno, Ginza, and Shinjuku by train or subway.</p>
+      <p>Whether you are visiting Tokyo for sightseeing, food, Japanese culture, or simply looking for a convenient and relaxing place to stay, Ryogoku offers an ideal balance of traditional Tokyo charm and easy access to the city's major attractions.</p>
+    </div>
+
+    <div class="love-grid">
+      <div class="love-item"><span class="emoji">🏯</span> Experience traditional Japanese culture and history</div>
+      <div class="love-item"><span class="emoji">🥋</span> Discover the world of sumo wrestling</div>
+      <div class="love-item"><span class="emoji">🍜</span> Enjoy local Japanese restaurants and traditional cuisine</div>
+      <div class="love-item"><span class="emoji">🌿</span> Relax in beautiful Japanese gardens</div>
+      <div class="love-item"><span class="emoji">🚆</span> Convenient access to major Tokyo attractions</div>
+      <div class="love-item"><span class="emoji">🏘️</span> Experience the atmosphere of an authentic Tokyo neighborhood</div>
+    </div>
+
+    <div class="access-grid">
+      <div class="access-card">
+        <div class="icon">🚇</div>
+        <h3>Toei Oedo Line</h3>
+        <p>3 min. walk</p>
+      </div>
+      <div class="access-card">
+        <div class="icon">🚆</div>
+        <h3>JR Ryogoku Station</h3>
+        <p>8 min. walk</p>
+      </div>
+      <div class="access-card">
+        <div class="icon">🏯</div>
+        <h3>Hokusai Museum &amp; Edo-Tokyo Museum</h3>
+        <p>5 min. walk</p>
+      </div>
+      <div class="access-card">
+        <div class="icon">🚉</div>
+        <h3>Central Tokyo</h3>
+        <p>Within 30 min. by train<br>(Ginza, Shinjuku, Akihabara, Asakusa, etc.)</p>
+      </div>
+      <div class="access-card">
+        <div class="icon">✈️</div>
+        <h3>Haneda Airport</h3>
+        <p>About 40 min. by train</p>
+      </div>
+      <div class="access-card">
+        <div class="icon">✈️</div>
+        <h3>Narita Airport</h3>
+        <p>About 80 min. by train</p>
+      </div>
+    </div>
+    <div class="spot-list">
+      <span class="spot-tag">Ryogoku Kokugikan (Sumo Arena)</span>
+      <span class="spot-tag">Edo-Tokyo Museum</span>
+      <span class="spot-tag">Sumida Hokusai Museum</span>
+      <span class="spot-tag">Token Museum</span>
+      <span class="spot-tag">Convenience store, supermarket &amp; liquor shop nearby</span>
+      <span class="spot-tag">Izakayas &amp; local diners near the station</span>
+    </div>
+
+    <div class="routes">
+      <div class="route-card">
+        <h3>✈️ From Narita Airport</h3>
+        <ol>
+          <li>Take the Keisei Skyliner from Narita Airport to Ueno Station (the last stop).</li>
+          <li>Walk to Ueno-Okachimachi Station and transfer to the Toei Oedo Line (about a 10-minute walk). There's an underground passageway connecting the stations, so you won't need to go above ground.</li>
+          <li>Get off at Ryogoku Station (Oedo Line).</li>
+          <li>It's just a couple of minutes' walk to WAKURA — follow the map below.</li>
+        </ol>
+      </div>
+      <div class="route-card">
+        <h3>✈️ From Haneda Airport</h3>
+        <ol>
+          <li>Take the Tokyo Monorail to its last stop.</li>
+          <li>Transfer to the Toei Oedo Line subway (not the JR line).</li>
+          <li>Get off at Ryogoku Station and follow the map below.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="map-embed">
+      <iframe
+        src="https://maps.google.com/maps?q=35.6974287,139.7984087&z=18&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="WAKURA location map">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2>Rooms (7 in total)</h2>
+      <span class="en">7 rooms in the same building — great for large families and multi-group stays</span>
+    </div>
+    <div class="room-grid">
+
+      <div class="room-card featured">
+        <a class="room-thumb" href="https://www.airbnb.jp/rooms/20713641" target="_blank" rel="noopener">
+          <span>Room 101</span>
+          <span class="photo-cta">View Photos on Airbnb →</span>
+        </a>
+        <div class="room-body">
+          <h3>WAKURA — Room 101</h3>
+          <p>This unit is located on the 1st floor of a 3-story apartment building, with two units on each of the 1st and 2nd floors. The host lives on the 3rd floor and in one of the 2nd-floor units, and is able to promptly assist with anything you need during your stay.</p>
+          <p>Each unit is 30㎡ with two double-size beds, and is completely self-contained with its own private entrance, bathroom, and kitchen. As a standard-sized Tokyo apartment it may not be spacious, but every detail has been prepared with care for a comfortable stay. Additional units in the same building are also listed on Airbnb — just ask if you're traveling with a large family or group.</p>
+
+          <div class="stay-facts">
+            <div class="stay-fact">
+              <div class="label">GUESTS</div>
+              <div class="value">Up to 2</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-IN</div>
+              <div class="value">3:00 PM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-OUT</div>
+              <div class="value">10:00 AM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">RATE</div>
+              <div class="value">¥18,000+</div>
+            </div>
+          </div>
+
+          <div class="feature-tags">
+            <span class="feature-tag">30㎡ · Two double beds</span>
+            <span class="feature-tag">Ground floor — no stairs to your room</span>
+            <span class="feature-tag">Self check-in (smart lock)</span>
+            <span class="feature-tag">Host lives on-site</span>
+            <span class="feature-tag">Private entrance, bathroom &amp; kitchen</span>
+            <span class="feature-tag">Long-term stays OK (28+ nights)</span>
+            <span class="feature-tag">Luggage drop-off OK</span>
+            <span class="feature-tag">Wi-Fi 93Mbps</span>
+          </div>
+
+          <div class="amenity-groups">
+            <div class="amenity-group">
+              <h4>Bathroom</h4>
+              <ul>
+                <li>Bathtub &amp; washlet (bidet)</li>
+                <li>Hair dryer</li>
+                <li>Shampoo / Kao conditioner &amp; body soap</li>
+                <li>Hot water &amp; cleaning products</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Bedroom &amp; Laundry</h4>
+              <ul>
+                <li>Free washer &amp; dryer (in unit)</li>
+                <li>Towels, sheets, soap, toilet paper</li>
+                <li>Cotton linens, extra pillows &amp; blankets</li>
+                <li>Blackout curtains, iron, drying rack</li>
+                <li>Closet &amp; hangers</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Kitchen &amp; Dining</h4>
+              <ul>
+                <li>Kitchen (induction stove), fridge &amp; freezer</li>
+                <li>Microwave, rice cooker, kettle, toaster</li>
+                <li>Basic cookware (pots, pans, oil, salt, pepper)</li>
+                <li>Full set of dishes &amp; cutlery</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Internet &amp; More</h4>
+              <ul>
+                <li>High-speed Wi-Fi (93Mbps, 4K capable)</li>
+                <li>Ethernet connection, 20" TV</li>
+                <li>Window AC unit, ductless heating, portable fan</li>
+                <li>Workspace in shared area</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Safety</h4>
+              <ul>
+                <li>Security cameras (entrance porch &amp; shared hallway)</li>
+                <li>Smoke alarms in every room</li>
+                <li>Fire extinguisher &amp; first aid kit</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="room-link" href="https://www.airbnb.jp/rooms/20713641" target="_blank" rel="noopener">See details &amp; availability on Airbnb →</a>
+        </div>
+      </div>
+
+      <div class="room-card featured">
+        <a class="room-thumb" href="https://www.airbnb.jp/rooms/20713816" target="_blank" rel="noopener">
+          <span>Room 102</span>
+          <span class="photo-cta">View Photos on Airbnb →</span>
+        </a>
+        <div class="room-body">
+          <h3>WAKURA — Room 102</h3>
+          <p>This unit is located on the 1st floor of a 3-story building, with two units on each of the 1st and 2nd floors. The host lives in half of the 2nd floor and on the 3rd floor, and is able to respond quickly to any emergencies or equipment issues.</p>
+          <p>The room is approximately 25㎡ with one queen-size bed. Each unit is fully independent — the entrance, toilet, bathroom, and kitchen are all within your private space, so there is nothing shared with other guests. As with most rooms in Japan it's not large, but every detail has been carefully arranged for a comfortable stay.</p>
+
+          <div class="stay-facts">
+            <div class="stay-fact">
+              <div class="label">GUESTS</div>
+              <div class="value">Up to 2</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-IN</div>
+              <div class="value">3:00 PM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-OUT</div>
+              <div class="value">10:00 AM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">RATE</div>
+              <div class="value">¥14,000+</div>
+            </div>
+          </div>
+
+          <div class="feature-tags">
+            <span class="feature-tag">25㎡ · Queen bed</span>
+            <span class="feature-tag">Ground floor — no stairs to your room</span>
+            <span class="feature-tag">Self check-in (smart lock)</span>
+            <span class="feature-tag">Host lives on-site</span>
+            <span class="feature-tag">Private entrance, bathroom &amp; kitchen</span>
+            <span class="feature-tag">Long-term stays OK (28+ nights)</span>
+            <span class="feature-tag">Luggage drop-off OK</span>
+            <span class="feature-tag">Wi-Fi 93Mbps</span>
+          </div>
+
+          <div class="amenity-groups">
+            <div class="amenity-group">
+              <h4>Bathroom</h4>
+              <ul>
+                <li>Bathtub &amp; washlet (bidet)</li>
+                <li>Hair dryer</li>
+                <li>Shampoo / Kao conditioner &amp; body soap</li>
+                <li>Hot water &amp; cleaning products</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Bedroom &amp; Laundry</h4>
+              <ul>
+                <li>Free washer &amp; dryer (in unit)</li>
+                <li>Towels, sheets, soap, toilet paper</li>
+                <li>Cotton linens, extra pillows &amp; blankets</li>
+                <li>Blackout curtains, iron, drying rack</li>
+                <li>Closet &amp; hangers</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Kitchen &amp; Dining</h4>
+              <ul>
+                <li>Kitchen (induction stove), fridge &amp; freezer</li>
+                <li>Microwave, rice cooker, kettle, toaster</li>
+                <li>Basic cookware (pots, pans, oil, salt, pepper)</li>
+                <li>Full set of dishes &amp; cutlery</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Internet &amp; More</h4>
+              <ul>
+                <li>High-speed Wi-Fi (93Mbps, 4K capable)</li>
+                <li>Ethernet connection, 20" TV</li>
+                <li>Window AC unit, ductless heating, portable fan</li>
+                <li>Workspace in shared area</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Safety</h4>
+              <ul>
+                <li>Security cameras (entrance porch &amp; shared hallway)</li>
+                <li>Smoke alarms in every room</li>
+                <li>Fire extinguisher &amp; first aid kit</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="room-link" href="https://www.airbnb.jp/rooms/20713816" target="_blank" rel="noopener">See details &amp; availability on Airbnb →</a>
+        </div>
+      </div>
+
+      <div class="room-card featured">
+        <a class="room-thumb" href="https://www.airbnb.jp/rooms/21238107" target="_blank" rel="noopener">
+          <span>Room 201</span>
+          <span class="photo-cta">View Photos on Airbnb →</span>
+        </a>
+        <div class="room-body">
+          <h3>WAKURA — Room 201</h3>
+          <p>This unit is located on the 2nd floor of the 3-story apartment building (no elevator). There are two units each on the 1st and 2nd floors, and the host lives on the 3rd floor and in one of the 2nd-floor units, able to promptly assist with anything you need during your stay.</p>
+          <p>The room is 33㎡ with two single beds and one sofa bed (futon). Each unit is completely self-contained with its own private entrance, bathroom, and kitchen. As a standard-sized Tokyo apartment it may not be spacious, but every detail has been prepared with care for a comfortable stay. Additional units in the same building are also listed on Airbnb — just ask if you're traveling with a large family or group.</p>
+
+          <div class="stay-facts">
+            <div class="stay-fact">
+              <div class="label">GUESTS</div>
+              <div class="value">Up to 3</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-IN</div>
+              <div class="value">3:00 PM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-OUT</div>
+              <div class="value">10:00 AM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">RATE</div>
+              <div class="value">¥18,000+</div>
+            </div>
+          </div>
+
+          <div class="feature-tags">
+            <span class="feature-tag">33㎡ · Two single beds + sofa bed</span>
+            <span class="feature-tag">2nd floor — stairs, no elevator</span>
+            <span class="feature-tag">Self check-in (smart lock)</span>
+            <span class="feature-tag">Host lives on-site</span>
+            <span class="feature-tag">Private entrance, bathroom &amp; kitchen</span>
+            <span class="feature-tag">Long-term stays OK (28+ nights)</span>
+            <span class="feature-tag">Luggage drop-off OK</span>
+            <span class="feature-tag">Wi-Fi 93Mbps</span>
+          </div>
+
+          <div class="amenity-groups">
+            <div class="amenity-group">
+              <h4>Bathroom</h4>
+              <ul>
+                <li>Bathtub &amp; washlet (bidet)</li>
+                <li>Hair dryer</li>
+                <li>Shampoo / Kao conditioner &amp; body soap</li>
+                <li>Hot water &amp; cleaning products</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Bedroom &amp; Laundry</h4>
+              <ul>
+                <li>Free washer &amp; dryer (in unit)</li>
+                <li>Towels, sheets, soap, toilet paper</li>
+                <li>Cotton linens, extra pillows &amp; blankets</li>
+                <li>Blackout curtains, iron, drying rack</li>
+                <li>Closet &amp; hangers</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Kitchen &amp; Dining</h4>
+              <ul>
+                <li>Kitchen (induction stove), fridge &amp; freezer</li>
+                <li>Microwave, rice cooker, kettle, toaster</li>
+                <li>Basic cookware (pots, pans, oil, salt, pepper)</li>
+                <li>Full set of dishes &amp; cutlery</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Internet &amp; More</h4>
+              <ul>
+                <li>High-speed Wi-Fi (93Mbps, 4K capable)</li>
+                <li>Ethernet connection, 20" TV</li>
+                <li>Window AC unit, ductless heating, portable fan</li>
+                <li>Workspace in shared area</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Safety</h4>
+              <ul>
+                <li>Security cameras (entrance porch &amp; shared hallway)</li>
+                <li>Smoke alarms in every room</li>
+                <li>Fire extinguisher &amp; first aid kit</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="room-link" href="https://www.airbnb.jp/rooms/21238107" target="_blank" rel="noopener">See details &amp; availability on Airbnb →</a>
+        </div>
+      </div>
+
+      <div class="room-card featured">
+        <a class="room-thumb" href="https://www.airbnb.com/rooms/44711984" target="_blank" rel="noopener">
+          <span>Room 103</span>
+          <span class="photo-cta">View Photos on Airbnb →</span>
+        </a>
+        <div class="room-body">
+          <h3>WAKURA — Room 103</h3>
+          <p>This unit is located on the 1st floor of the 3-story apartment building. The host lives in the neighboring building, on the 2nd and 3rd floors, and is able to promptly assist with anything you need during your stay.</p>
+          <p>This room is 50㎡ and completely separate from the other units, with its own private entrance, bathroom, and kitchen. It has four identical single beds, which can be arranged side by side to form a king-size bed — each fitted with a SERTA mattress. As a standard-sized Tokyo apartment it may not be spacious, but every detail has been prepared with care for a comfortable stay. Additional units in the same building are also listed on Airbnb — just ask if you're traveling with a large family or group.</p>
+
+          <div class="stay-facts">
+            <div class="stay-fact">
+              <div class="label">GUESTS</div>
+              <div class="value">Up to 4</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-IN</div>
+              <div class="value">3:00 PM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-OUT</div>
+              <div class="value">10:00 AM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">RATE</div>
+              <div class="value">¥30,000+</div>
+            </div>
+          </div>
+
+          <div class="feature-tags">
+            <span class="feature-tag">50㎡ · Four single beds · Arrangeable as king</span>
+            <span class="feature-tag">SERTA mattresses</span>
+            <span class="feature-tag">Ground floor — no stairs to your room</span>
+            <span class="feature-tag">Self check-in (smart lock)</span>
+            <span class="feature-tag">Host in neighboring building</span>
+            <span class="feature-tag">Private entrance, bathroom &amp; kitchen</span>
+            <span class="feature-tag">Long-term stays OK (28+ nights)</span>
+            <span class="feature-tag">Wi-Fi 93Mbps</span>
+          </div>
+
+          <div class="amenity-groups">
+            <div class="amenity-group">
+              <h4>Bathroom</h4>
+              <ul>
+                <li>Bathtub &amp; washlet (bidet)</li>
+                <li>Hair dryer</li>
+                <li>Shampoo / Kao conditioner &amp; body soap</li>
+                <li>Hot water &amp; cleaning products</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Bedroom &amp; Laundry</h4>
+              <ul>
+                <li>Free washer &amp; dryer (in unit)</li>
+                <li>Towels, sheets, soap, toilet paper</li>
+                <li>Cotton linens, extra pillows &amp; blankets</li>
+                <li>Blackout curtains, iron, drying rack</li>
+                <li>Closet &amp; hangers</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Kitchen &amp; Dining</h4>
+              <ul>
+                <li>Kitchen (induction stove), fridge &amp; freezer</li>
+                <li>Microwave, rice cooker, kettle, toaster</li>
+                <li>Basic cookware (pots, pans, oil, salt, pepper)</li>
+                <li>Full set of dishes &amp; cutlery</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Internet &amp; More</h4>
+              <ul>
+                <li>High-speed Wi-Fi (93Mbps, 4K capable)</li>
+                <li>Ethernet connection, 20" TV</li>
+                <li>Window AC unit, ductless heating, portable fan</li>
+                <li>Workspace in shared area</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Safety</h4>
+              <ul>
+                <li>Security cameras (entrance porch &amp; shared hallway)</li>
+                <li>Smoke alarms in every room</li>
+                <li>Fire extinguisher &amp; first aid kit</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="room-link" href="https://www.airbnb.com/rooms/44711984" target="_blank" rel="noopener">See details &amp; availability on Airbnb →</a>
+        </div>
+      </div>
+
+      <div class="room-card featured">
+        <a class="room-thumb" href="https://www.airbnb.com/rooms/50777770" target="_blank" rel="noopener">
+          <span>Room 203</span>
+          <span class="photo-cta">View Photos on Airbnb →</span>
+        </a>
+        <div class="room-body">
+          <h3>WAKURA — Room 203</h3>
+          <p>This unit is located on the 2nd floor of the 3-story apartment building (no elevator). The host lives in the neighboring building, on the 3rd floor, and is able to promptly assist with anything you need during your stay.</p>
+          <p>The room is 50㎡ and completely separate from the other units, with its own private entrance, bathroom, and kitchen. It has four identical single beds, which can be arranged side by side to form a king-size bed — each fitted with a SERTA mattress — plus two small sofa beds. As a standard-sized Tokyo apartment it may not be spacious, but every detail has been prepared with care for a comfortable stay. Additional units in the same building are also listed on Airbnb — just ask if you're traveling with a large family or group.</p>
+
+          <div class="stay-facts">
+            <div class="stay-fact">
+              <div class="label">GUESTS</div>
+              <div class="value">Up to 4</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-IN</div>
+              <div class="value">3:00 PM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-OUT</div>
+              <div class="value">10:00 AM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">RATE</div>
+              <div class="value">¥30,000+</div>
+            </div>
+          </div>
+
+          <div class="feature-tags">
+            <span class="feature-tag">50㎡ · Four single beds · Arrangeable as king</span>
+            <span class="feature-tag">SERTA mattresses</span>
+            <span class="feature-tag">Two small sofa beds</span>
+            <span class="feature-tag">2nd floor — stairs, no elevator</span>
+            <span class="feature-tag">Self check-in (smart lock)</span>
+            <span class="feature-tag">Host in neighboring building</span>
+            <span class="feature-tag">Private entrance, bathroom &amp; kitchen</span>
+            <span class="feature-tag">Long-term stays OK (28+ nights)</span>
+            <span class="feature-tag">Wi-Fi 93Mbps</span>
+          </div>
+
+          <div class="amenity-groups">
+            <div class="amenity-group">
+              <h4>Bathroom</h4>
+              <ul>
+                <li>Bathtub &amp; washlet (bidet)</li>
+                <li>Hair dryer</li>
+                <li>Shampoo / Kao conditioner &amp; body soap</li>
+                <li>Hot water &amp; cleaning products</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Bedroom &amp; Laundry</h4>
+              <ul>
+                <li>Free washer &amp; dryer (in unit)</li>
+                <li>Towels, sheets, soap, toilet paper</li>
+                <li>Cotton linens, extra pillows &amp; blankets</li>
+                <li>Blackout curtains, iron, drying rack</li>
+                <li>Closet &amp; hangers</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Kitchen &amp; Dining</h4>
+              <ul>
+                <li>Kitchen (induction stove), fridge &amp; freezer</li>
+                <li>Microwave, rice cooker, kettle, toaster</li>
+                <li>Basic cookware (pots, pans, oil, salt, pepper)</li>
+                <li>Full set of dishes &amp; cutlery</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Internet &amp; More</h4>
+              <ul>
+                <li>High-speed Wi-Fi (93Mbps, 4K capable)</li>
+                <li>Ethernet connection, 20" TV</li>
+                <li>Window AC unit, ductless heating, portable fan</li>
+                <li>Workspace in shared area</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Safety</h4>
+              <ul>
+                <li>Security cameras (entrance porch &amp; shared hallway)</li>
+                <li>Smoke alarms in every room</li>
+                <li>Fire extinguisher &amp; first aid kit</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="room-link" href="https://www.airbnb.com/rooms/50777770" target="_blank" rel="noopener">See details &amp; availability on Airbnb →</a>
+        </div>
+      </div>
+
+      <div class="room-card featured">
+        <a class="room-thumb" href="https://www.airbnb.jp/rooms/657706548673227007" target="_blank" rel="noopener">
+          <span>Room 301</span>
+          <span class="photo-cta">View Photos on Airbnb →</span>
+        </a>
+        <div class="room-body">
+          <h3>WAKURA — Room 301</h3>
+          <p>This unit is located on the 3rd floor of the 3-story apartment building (no elevator — we're happy to help if your luggage is too heavy). The host lives in the neighboring building and is able to promptly assist with anything you need during your stay.</p>
+          <p>The room is 25㎡ and completely separate from the other units, with its own private entrance, bathroom, and kitchen. It has two identical single beds, which can be arranged side by side to form a king-size bed — each fitted with a SERTA mattress. As a standard-sized Tokyo apartment it may not be spacious, but every detail has been prepared with care for a comfortable stay. Additional units in this building and the neighboring one are also listed on Airbnb — just ask if you're traveling with a large family or group.</p>
+
+          <div class="stay-facts">
+            <div class="stay-fact">
+              <div class="label">GUESTS</div>
+              <div class="value">Up to 2</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-IN</div>
+              <div class="value">3:00 PM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-OUT</div>
+              <div class="value">10:00 AM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">RATE</div>
+              <div class="value">¥16,000+</div>
+            </div>
+          </div>
+
+          <div class="feature-tags">
+            <span class="feature-tag">25㎡ · Two single beds · Arrangeable as king</span>
+            <span class="feature-tag">SERTA mattresses</span>
+            <span class="feature-tag">3rd floor — stairs, no elevator</span>
+            <span class="feature-tag">Self check-in (smart lock)</span>
+            <span class="feature-tag">Host in neighboring building</span>
+            <span class="feature-tag">Private entrance, bathroom &amp; kitchen</span>
+            <span class="feature-tag">Long-term stays OK (28+ nights)</span>
+            <span class="feature-tag">Wi-Fi 93Mbps</span>
+          </div>
+
+          <div class="amenity-groups">
+            <div class="amenity-group">
+              <h4>Bathroom</h4>
+              <ul>
+                <li>Bathtub &amp; washlet (bidet)</li>
+                <li>Hair dryer</li>
+                <li>Shampoo / Kao conditioner &amp; body soap</li>
+                <li>Hot water &amp; cleaning products</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Bedroom &amp; Laundry</h4>
+              <ul>
+                <li>Free washer &amp; dryer (in unit)</li>
+                <li>Towels, sheets, soap, toilet paper</li>
+                <li>Cotton linens, extra pillows &amp; blankets</li>
+                <li>Blackout curtains, iron, drying rack</li>
+                <li>Closet &amp; hangers</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Kitchen &amp; Dining</h4>
+              <ul>
+                <li>Kitchen (induction stove), fridge &amp; freezer</li>
+                <li>Microwave, rice cooker, kettle, toaster</li>
+                <li>Basic cookware (pots, pans, oil, salt, pepper)</li>
+                <li>Full set of dishes &amp; cutlery</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Internet &amp; More</h4>
+              <ul>
+                <li>High-speed Wi-Fi (93Mbps, 4K capable)</li>
+                <li>Ethernet connection, 20" TV</li>
+                <li>Window AC unit, ductless heating, portable fan</li>
+                <li>Workspace in shared area</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Safety</h4>
+              <ul>
+                <li>Security cameras (entrance porch &amp; shared hallway)</li>
+                <li>Smoke alarms in every room</li>
+                <li>Fire extinguisher &amp; first aid kit</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="room-link" href="https://www.airbnb.jp/rooms/657706548673227007" target="_blank" rel="noopener">See details &amp; availability on Airbnb →</a>
+        </div>
+      </div>
+
+      <div class="room-card featured">
+        <a class="room-thumb" href="https://www.airbnb.jp/rooms/739304234278270069" target="_blank" rel="noopener">
+          <span>Room 302</span>
+          <span class="photo-cta">View Photos on Airbnb →</span>
+        </a>
+        <div class="room-body">
+          <h3>WAKURA — Room 302</h3>
+          <p>This unit is located on the 3rd floor of the 3-story apartment building (no elevator — we're happy to help if your luggage is too heavy). The host lives in the neighboring building and is able to promptly assist with anything you need during your stay.</p>
+          <p>The room is 25㎡ and completely separate from the other units, with its own private entrance, bathroom, and kitchen. It has two identical single beds, which can be arranged side by side to form a king-size bed — each fitted with a SERTA mattress. As a standard-sized Tokyo apartment it may not be spacious, but every detail has been prepared with care for a comfortable stay. Additional units in this building and the neighboring one are also listed on Airbnb — just ask if you're traveling with a large family or group.</p>
+
+          <div class="stay-facts">
+            <div class="stay-fact">
+              <div class="label">GUESTS</div>
+              <div class="value">Up to 2</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-IN</div>
+              <div class="value">3:00 PM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">CHECK-OUT</div>
+              <div class="value">10:00 AM</div>
+            </div>
+            <div class="stay-fact">
+              <div class="label">RATE</div>
+              <div class="value">¥16,000+</div>
+            </div>
+          </div>
+
+          <div class="feature-tags">
+            <span class="feature-tag">25㎡ · Two single beds · Arrangeable as king</span>
+            <span class="feature-tag">SERTA mattresses</span>
+            <span class="feature-tag">3rd floor — stairs, no elevator</span>
+            <span class="feature-tag">Self check-in (smart lock)</span>
+            <span class="feature-tag">Host in neighboring building</span>
+            <span class="feature-tag">Private entrance, bathroom &amp; kitchen</span>
+            <span class="feature-tag">Long-term stays OK (28+ nights)</span>
+            <span class="feature-tag">Wi-Fi 93Mbps</span>
+          </div>
+
+          <div class="amenity-groups">
+            <div class="amenity-group">
+              <h4>Bathroom</h4>
+              <ul>
+                <li>Bathtub &amp; washlet (bidet)</li>
+                <li>Hair dryer</li>
+                <li>Shampoo / Kao conditioner &amp; body soap</li>
+                <li>Hot water &amp; cleaning products</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Bedroom &amp; Laundry</h4>
+              <ul>
+                <li>Free washer &amp; dryer (in unit)</li>
+                <li>Towels, sheets, soap, toilet paper</li>
+                <li>Cotton linens, extra pillows &amp; blankets</li>
+                <li>Blackout curtains, iron, drying rack</li>
+                <li>Closet &amp; hangers</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Kitchen &amp; Dining</h4>
+              <ul>
+                <li>Kitchen (induction stove), fridge &amp; freezer</li>
+                <li>Microwave, rice cooker, kettle, toaster</li>
+                <li>Basic cookware (pots, pans, oil, salt, pepper)</li>
+                <li>Full set of dishes &amp; cutlery</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Internet &amp; More</h4>
+              <ul>
+                <li>High-speed Wi-Fi (93Mbps, 4K capable)</li>
+                <li>Ethernet connection, 20" TV</li>
+                <li>Window AC unit, ductless heating, portable fan</li>
+                <li>Workspace in shared area</li>
+              </ul>
+            </div>
+            <div class="amenity-group">
+              <h4>Safety</h4>
+              <ul>
+                <li>Security cameras (entrance porch &amp; shared hallway)</li>
+                <li>Smoke alarms in every room</li>
+                <li>Fire extinguisher &amp; first aid kit</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="room-link" href="https://www.airbnb.jp/rooms/739304234278270069" target="_blank" rel="noopener">See details &amp; availability on Airbnb →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">WAKURA</div>
+  <p>1-17-2 Kamezawa, Sumida-ku, Tokyo, Japan</p>
+  <p>Operated by Wakura LLC</p>
+  <p>For bookings and inquiries, please use the Airbnb page for each room.</p>
+  <div class="note">Actual photos for each room will be added soon — for now, please view them on the linked Airbnb pages.</div>
+</footer>
+
+</body>
+</html>
